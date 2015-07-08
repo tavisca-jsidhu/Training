@@ -1,0 +1,5 @@
+D:\Training\01 Operator Overloading\Operator Overloading.Model\bin\Debug\Operator Overloading.Model.dll
+D:\Training\01 Operator Overloading\Operator Overloading.Model\bin\Debug\Operator Overloading.Model.pdb
+D:\Training\01 Operator Overloading\Operator Overloading.Model\obj\Debug\Operator Overloading.Model.csprojResolveAssemblyReference.cache
+D:\Training\01 Operator Overloading\Operator Overloading.Model\obj\Debug\Operator Overloading.Model.dll
+D:\Training\01 Operator Overloading\Operator Overloading.Model\obj\Debug\Operator Overloading.Model.pdb
