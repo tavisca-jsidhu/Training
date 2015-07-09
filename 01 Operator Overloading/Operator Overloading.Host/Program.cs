@@ -13,33 +13,13 @@ namespace OperatorOverloading.Host
         {
             try
             {
-                double amountVal;
-                string currencyVal;
-                string input;
-                Money m1;
-                Money m2;
-
-                Console.WriteLine("Format : 'Amount currency(3 letters)'\n");
-
                 Console.WriteLine("Enter 1st Amount : ");
 
-                input = Console.ReadLine();
-
-                string[] words = input.Split(' ');
-                double.TryParse(words[0], out amountVal);
-                currencyVal = words[1];
-
-                m1 = new Money(amountVal, currencyVal);
+                Money m1 = new Money(Console.ReadLine());
 
                 Console.WriteLine("Enter 2nd Amount : ");
 
-                input = Console.ReadLine();
-
-                string[] words2 = input.Split(' ');
-                double.TryParse(words2[0], out amountVal);
-                currencyVal = words2[1];
-
-                m2 = new Money(amountVal, currencyVal);
+                Money m2 = new Money(Console.ReadLine());
 
                 Money m3 = m1 + m2;
                 Console.WriteLine("\n" + m3.Amount);

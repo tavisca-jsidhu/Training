@@ -61,6 +61,15 @@ namespace OperatorOverloading.Model {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;Your Input is invalid&quot;.
+        /// </summary>
+        internal static string InvalidInput {
+            get {
+                return ResourceManager.GetString("InvalidInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;Amount entered is in negative.&quot;.
         /// </summary>
         internal static string NegativeVal {
@@ -75,6 +84,15 @@ namespace OperatorOverloading.Model {
         internal static string NoMatch {
             get {
                 return ResourceManager.GetString("NoMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Object Reference passed is null&quot;.
+        /// </summary>
+        internal static string NullObject {
+            get {
+                return ResourceManager.GetString("NullObject", resourceCulture);
             }
         }
         
