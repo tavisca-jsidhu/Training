@@ -1,6 +1,0 @@
-D:\Training\Training\bin\Debug\Training.exe.config
-D:\Training\Training\bin\Debug\Training.exe
-D:\Training\Training\bin\Debug\Training.pdb
-D:\Training\Training\obj\Debug\Training.csprojResolveAssemblyReference.cache
-D:\Training\Training\obj\Debug\Training.exe
-D:\Training\Training\obj\Debug\Training.pdb
