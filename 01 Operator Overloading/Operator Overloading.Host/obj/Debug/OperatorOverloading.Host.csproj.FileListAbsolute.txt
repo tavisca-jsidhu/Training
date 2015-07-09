@@ -6,3 +6,6 @@ D:\Training\01 Operator Overloading\Operator Overloading.Host\bin\Debug\Operator
 D:\Training\01 Operator Overloading\Operator Overloading.Host\obj\Debug\OperatorOverloading.Host.csprojResolveAssemblyReference.cache
 D:\Training\01 Operator Overloading\Operator Overloading.Host\obj\Debug\Operator Overloading.Host.exe
 D:\Training\01 Operator Overloading\Operator Overloading.Host\obj\Debug\Operator Overloading.Host.pdb
+E:\Training\01 Operator Overloading\Operator Overloading.Host\bin\Debug\Operator Overloading.Host.exe.config
+E:\Training\01 Operator Overloading\Operator Overloading.Host\obj\Debug\Operator Overloading.Host.exe
+E:\Training\01 Operator Overloading\Operator Overloading.Host\obj\Debug\Operator Overloading.Host.pdb

@@ -15,12 +15,19 @@ namespace OperatorOverloading.Host
             {
                 double amountVal;
                 string currencyVal;
+                string input;
 
                 Console.WriteLine("Enter 1st Amount : ");
-                double.TryParse(Console.ReadLine(),out amountVal);
+                //double.TryParse(Console.ReadLine(),out amountVal);
 
-                Console.WriteLine("Enter Currency : ");
-                currencyVal = Console.ReadLine();
+                input = Console.ReadLine();
+
+                //Console.WriteLine("Enter Currency : ");
+                //currencyVal = Console.ReadLine();
+
+                string[] words = input.Split(' ');
+                double.TryParse(string[0],out amountVal);
+                currencyVal = string[1];
 
                 Money m1 = new Money(amountVal, currencyVal);
 
@@ -41,12 +48,10 @@ namespace OperatorOverloading.Host
             {
                 Console.WriteLine(a);
             }
-
-            catch (Exception e)
+            catch (Exception e)    // exception catched
             {
                 Console.WriteLine(e);
             }
-
             Console.ReadKey();
         }
     }

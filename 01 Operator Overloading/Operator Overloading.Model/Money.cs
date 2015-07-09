@@ -17,6 +17,15 @@ namespace OperatorOverloading.Model
             Currency = currencyVal;
         }
 
+        public Money(string str)
+        {
+            double amt;
+            string[] words = str.Split(' ');
+            double.TryParse(string[0],out amt);
+            Amount = amt;
+            Currency = string[1];
+        }
+
         public double Amount 
         {
             get
