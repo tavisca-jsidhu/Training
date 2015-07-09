@@ -39,10 +39,10 @@ namespace OperatorOverloading.Model
         }
 
 
-        public Money(double amountVal, string currencyVal)  // constructor
+        public Money(double amount, string currency)  // constructor
         {
-            Amount = amountVal;
-            Currency = currencyVal;
+            Amount = amount;
+            Currency = currency;
         }
 
         public double Amount //Amount property
@@ -98,12 +98,11 @@ namespace OperatorOverloading.Model
                 if (m1.Currency.Equals(m2.Currency, StringComparison.InvariantCultureIgnoreCase))
                 {
                     double amount = m1._amount + m2._amount;
-                    string currency = m1._currency;
                     if (amount >= double.MaxValue)
                     {
                         throw new ArgumentException(Messages.OutOfRange);  // throw exception if amount is negative
                     }
-                    return new Money(amount, currency);
+                    return new Money(amount, m1._currency);
                 }
                 else
                 {

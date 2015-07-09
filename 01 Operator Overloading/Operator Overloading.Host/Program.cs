@@ -17,6 +17,7 @@ namespace OperatorOverloading.Host
 
                 var m1 = new Money(Console.ReadLine());
 
+
                 Console.WriteLine("Enter 2nd Amount : ");
 
                 var m2 = new Money(Console.ReadLine());
