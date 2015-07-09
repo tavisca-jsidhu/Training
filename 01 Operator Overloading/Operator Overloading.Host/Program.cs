@@ -15,13 +15,13 @@ namespace OperatorOverloading.Host
             {
                 Console.WriteLine("Enter 1st Amount : ");
 
-                Money m1 = new Money(Console.ReadLine());
+                var m1 = new Money(Console.ReadLine());
 
                 Console.WriteLine("Enter 2nd Amount : ");
 
-                Money m2 = new Money(Console.ReadLine());
+                var m2 = new Money(Console.ReadLine());
 
-                Money m3 = m1 + m2;
+                var m3 = m1 + m2;
                 Console.WriteLine("\n" + m3.Amount);
                 Console.WriteLine(m3.Currency);
             }
