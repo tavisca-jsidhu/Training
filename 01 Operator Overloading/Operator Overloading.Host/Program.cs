@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OperatorOverloading.Model;
+using OperatorOverloading.Dbl;
 
 namespace OperatorOverloading.Host
 {
@@ -13,30 +14,27 @@ namespace OperatorOverloading.Host
         {
             try
             {
-                Console.WriteLine("Enter 1st Amount : ");
+                Console.WriteLine("Format : 100 USD");
 
+                Console.WriteLine("\nEnter Amount : "); // Enter Amount in Format '100 USD'
                 var m1 = new Money(Console.ReadLine());
 
+                Console.WriteLine("\nEnter target Currency : "); // Enter target currency
+                string target = Console.ReadLine();
+                Console.WriteLine("\nExchanged Amount : ");
 
-                Console.WriteLine("Enter 2nd Amount : ");
-
-                var m2 = new Money(Console.ReadLine());
-
-                var m3 = m1 + m2;
-                Console.WriteLine("\n" + m3.Amount);
-                Console.WriteLine(m3.Currency);
+                double exchangedRate = m1.ExchangeValue(m1.Amount, m1.Currency, target);
+                Console.WriteLine("{0} {1}", exchangedRate, target.ToUpper());
             }
 
             catch (ArgumentException a)
             {
-                Console.WriteLine(a);
+                Console.WriteLine(a.Message);
             }
-
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
             }
-
             Console.ReadKey();
         }
     }

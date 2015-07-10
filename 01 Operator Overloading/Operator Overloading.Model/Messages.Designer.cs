@@ -88,7 +88,16 @@ namespace OperatorOverloading.Model {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Object Reference passed is null&quot;.
+        ///   Looks up a localized string similar to &quot;Invalid Currency&quot;.
+        /// </summary>
+        internal static string NullCurrency {
+            get {
+                return ResourceManager.GetString("NullCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Object Reference passed is null.&quot;.
         /// </summary>
         internal static string NullObject {
             get {
@@ -97,7 +106,7 @@ namespace OperatorOverloading.Model {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Currency can&apos;t be null&quot;.
+        ///   Looks up a localized string similar to &quot;Currency can&apos;t be null.&quot;.
         /// </summary>
         internal static string NullVal {
             get {
@@ -115,7 +124,7 @@ namespace OperatorOverloading.Model {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Currency format is wrong&quot;.
+        ///   Looks up a localized string similar to &quot;Currency format is wrong.&quot;.
         /// </summary>
         internal static string WrongFormat {
             get {

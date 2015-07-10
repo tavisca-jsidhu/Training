@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Text;
 using System.Threading.Tasks;
+using OperatorOverloading.Dbl;
 
 namespace OperatorOverloading.Model
 {
@@ -11,7 +13,8 @@ namespace OperatorOverloading.Model
         private double _amount;
         private string _currency;
 
-        public Money(string inputAmount)   // input expexcted as 100 USD   
+        //---------------Single Parameter Constructer--------------//
+        public Money(string inputAmount)  //Input Format <100 USD>
         {
 
             if (string.IsNullOrWhiteSpace(inputAmount))
@@ -35,17 +38,18 @@ namespace OperatorOverloading.Model
             {
                 throw new Exception(Messages.InvalidInput);
             }
-            Currency = amountArr[1];
+            Currency = amountArr[1].ToUpper();
         }
 
-
+        //----------------Constructor-------------//
         public Money(double amount, string currency)  // constructor
         {
             Amount = amount;
             Currency = currency;
         }
 
-        public double Amount //Amount property
+        //---------------Amount Property-------------//
+        public double Amount
         {
             get
             {
@@ -67,8 +71,8 @@ namespace OperatorOverloading.Model
                 }
             }
         }
-
-        public string Currency // Currency property
+        //---------------Currency Property-------------//
+        public string Currency
         {
             private set
             {
@@ -87,6 +91,7 @@ namespace OperatorOverloading.Model
             }
         }
 
+        //----------------Operator Overloading---------------//
         public static Money operator +(Money m1, Money m2)
         {
             if (m1 == null || m2 == null)
@@ -110,5 +115,24 @@ namespace OperatorOverloading.Model
                 }
             }
         }
-    }
+
+        //-----------------Calling Currency Exchange Function---------------//
+        public double ExchangeValue(double amount, string source,string target)
+        {
+            if (this == null)
+            {
+                throw new Exception(Messages.NullObject);
+            }
+            else 
+            {
+                if (string.IsNullOrWhiteSpace(target) || string.IsNullOrWhiteSpace(source) || target.Length != 3 || Regex.IsMatch(target, @"^[a-zA-Z]+$") == false)
+                {
+                    throw new ArgumentException(Messages.NullCurrency);
+                }
+                Conversion c = new Conversion();
+                double rate = c.ConvertCurrency(Amount, Currency, target.ToUpper());
+                return rate;
+            }
+        }
+  }
 }
