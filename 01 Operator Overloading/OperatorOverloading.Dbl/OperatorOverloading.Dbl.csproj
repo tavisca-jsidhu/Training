@@ -39,7 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conversion.cs" />
     <Compile Include="Exception.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

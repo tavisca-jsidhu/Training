@@ -61,6 +61,15 @@ namespace OperatorOverloading.Model {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;Currency isn&apos;t present&quot;.
+        /// </summary>
+        internal static string CurrencyNotPresent {
+            get {
+                return ResourceManager.GetString("CurrencyNotPresent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;Your Input is invalid&quot;.
         /// </summary>
         internal static string InvalidInput {

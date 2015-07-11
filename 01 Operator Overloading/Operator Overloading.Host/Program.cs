@@ -17,20 +17,25 @@ namespace OperatorOverloading.Host
                 Console.WriteLine("Format : 100 USD");
                 Console.WriteLine("\nEnter Amount : "); // Enter Amount in Format '100 USD'
                 var m1 = new Money(Console.ReadLine());
-                Console.WriteLine("\nEnter target Currency : "); // Enter target currency
-                string target = Console.ReadLine();
 
-                Console.WriteLine("\nExchanged Amount : {0} {1}", m1.ExchangeValue(m1.Amount, m1.Currency, target), target.ToUpper());
+                Console.WriteLine("\nEnter target Currency : "); // Enter target currency
+                var m2 = new Money(0, Console.ReadLine());
+
+                var exchangedRate = m1.ConvertCurrency(m2.Currency);
+                Console.WriteLine("\nExchanged Amount : {0} ", exchangedRate);
+                Console.WriteLine(m2.Currency);
             }
 
             catch (ArgumentException a)
             {
                 Console.WriteLine(a.Message);
             }
+
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
+
             Console.ReadKey();
         }
     }

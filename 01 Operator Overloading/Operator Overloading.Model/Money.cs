@@ -12,25 +12,20 @@ namespace OperatorOverloading.Model
     {
         private double _amount;
         private string _currency;
-        private string _target;
 
         //---------------Single Parameter Constructer--------------//
         public Money(string inputAmount)  //Input Format <100 USD>
         {
-
             if (string.IsNullOrWhiteSpace(inputAmount))
             {
                 throw new Exception(Messages.InvalidInput);
             }
-
             var amountArr = inputAmount.Split(' ');
             double amount;
-
             if (amountArr.Length != 2)
             {
                 throw new Exception(Messages.InvalidInput);
             }
-
             if (double.TryParse(amountArr[0], out amount))
             {
                 Amount = amount;
@@ -81,7 +76,7 @@ namespace OperatorOverloading.Model
             }
             private set
             {
-                if (string.IsNullOrWhiteSpace(value) || (value.Length != 3 || Regex.IsMatch(value, @"^[a-zA-Z]+$") == false))
+                if (string.IsNullOrEmpty(value) || (value.Length != 3))
                 {
                     throw new ArgumentException(Messages.WrongFormat);
                 }
@@ -91,26 +86,6 @@ namespace OperatorOverloading.Model
                 }
             }
         }
-        //---------------Target Property-------------//
-        public string Target
-        {
-            get
-            {
-                return this._target;
-            }
-            private set
-            {
-                if (string.IsNullOrWhiteSpace(value) || (value.Length != 3) || Regex.IsMatch(value, @"^[a-zA-Z]+$") == false)
-                {
-                    throw new ArgumentException(Messages.WrongFormat);
-                }
-                else
-                {
-                    this._target = value.ToUpper();
-                }
-            }
-        }
-
         //----------------Operator Overloading---------------//
         public static Money operator +(Money m1, Money m2)
         {
@@ -136,20 +111,46 @@ namespace OperatorOverloading.Model
             }
         }
 
-        //-----------------Calling Currency Exchange Function---------------//
-        public double ExchangeValue(double amount, string source, string target)
+        //------------------Convert Currency Function--------------------//    
+        string[] seperatedData;
+        public Money ConvertCurrency(string targetCurrency)
         {
-            if (this == null)
+            Parse parseObject = new Parse();
+            double sourceAmount = this.Amount;
+            string sourceCurrency = this.Currency;
+            seperatedData = parseObject.Parsing();
+            double rate1 = CurrencyExchangeFactor(sourceCurrency);
+            double rate2 = CurrencyExchangeFactor(targetCurrency);
+            if (rate2 / rate1 == 0)
             {
-                throw new Exception(Messages.NullObject);
+                throw new Exception("Divide by zero error.");
             }
-            else
+            double amount = (rate2 / rate1) * sourceAmount;
+            Money moneyObject = new Money(amount, targetCurrency);
+            return moneyObject;
+
+        }
+        //---------------Finding Exchange Factor---------------//
+        public double CurrencyExchangeFactor(string currency)
+        {
+            bool isPresent = false;
+            int iterate;
+            for (iterate = 0; iterate < seperatedData.Length; iterate++)
             {
-                Target = target;
-                Conversion c = new Conversion();
-                double rate = c.ConvertCurrency(Amount, Currency, Target);
-                return rate;
+                if (seperatedData[iterate].Contains(currency))
+                {
+                    isPresent = true;
+                    break; 
+                }
             }
+            if (isPresent == false)
+            {
+                throw new System.Exception(Messages.CurrencyNotPresent);
+            }
+            string[] finalSplit = seperatedData[iterate].Split(':');
+            double multiplier;
+            Double.TryParse(finalSplit[1], out multiplier);
+            return multiplier;
         }
     }
 }

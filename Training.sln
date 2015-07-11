@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Model",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Dbl", "01 Operator Overloading\OperatorOverloading.Dbl\OperatorOverloading.Dbl.csproj", "{7CD84FE5-622C-4D56-8650-AD581DF4FF57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTest", "01 Operator Overloading\IntegrationTest\IntegrationTest.csproj", "{2F6C3D0B-8614-4F38-A45E-5CE465C68F97}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloadingTesting", "01 Operator Overloading\IntegrationTest\OperatorOverloadingTesting.csproj", "{2F6C3D0B-8614-4F38-A45E-5CE465C68F97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

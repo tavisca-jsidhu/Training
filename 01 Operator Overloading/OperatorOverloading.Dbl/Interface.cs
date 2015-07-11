@@ -8,7 +8,7 @@ namespace OperatorOverloading.Dbl
 {
     public interface IParser
     {
-        double ConvertCurrency(double amount, string source, string target);
+        double ConvertCurrency(double amount, string src, string trgt);
     }
 }
 

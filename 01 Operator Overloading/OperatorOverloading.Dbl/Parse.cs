@@ -28,7 +28,7 @@ namespace OperatorOverloading.Dbl
         //------------------Parsing Function------------------//
         public string[] Parsing()
         {
-            string data = FileParse(); // We can use WebParse() function also
+            string data = FileParse();
 
             data = data.Replace('}', '\0').Replace('\"', '\0').Replace("USD", "");
             dataSplit = data.Split('{');
