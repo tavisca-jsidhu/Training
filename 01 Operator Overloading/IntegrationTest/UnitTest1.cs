@@ -14,7 +14,7 @@ namespace IntergrationTest
             var m1 = new Money("100 USD");
             double exchangedRate = m1.ExchangeValue(m1.Amount, m1.Currency, "INR");
 
-            Assert.IsTrue(exchangedRate == 6342.5449);
+            Assert.IsTrue(exchangedRate == 6336.9949);
         }
 
         [TestMethod]
@@ -23,7 +23,7 @@ namespace IntergrationTest
             var m1 = new Money("100 usD");
             double exchangedRate = m1.ExchangeValue(m1.Amount, m1.Currency, "INr");
 
-            Assert.IsTrue(exchangedRate == 6342.5449);
+            Assert.IsTrue(exchangedRate == 6336.9949);
         }
 
         [TestMethod]

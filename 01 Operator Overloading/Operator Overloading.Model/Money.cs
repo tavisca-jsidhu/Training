@@ -12,6 +12,7 @@ namespace OperatorOverloading.Model
     {
         private double _amount;
         private string _currency;
+        private string _target;
 
         //---------------Single Parameter Constructer--------------//
         public Money(string inputAmount)  //Input Format <100 USD>
@@ -38,7 +39,7 @@ namespace OperatorOverloading.Model
             {
                 throw new Exception(Messages.InvalidInput);
             }
-            Currency = amountArr[1].ToUpper();
+            Currency = amountArr[1];
         }
 
         //----------------Constructor-------------//
@@ -74,20 +75,39 @@ namespace OperatorOverloading.Model
         //---------------Currency Property-------------//
         public string Currency
         {
+            get
+            {
+                return this._currency;
+            }
             private set
             {
-                if (string.IsNullOrEmpty(value) || (value.Length != 3))
+                if (string.IsNullOrWhiteSpace(value) || (value.Length != 3 || Regex.IsMatch(value, @"^[a-zA-Z]+$") == false))
                 {
                     throw new ArgumentException(Messages.WrongFormat);
                 }
                 else
                 {
-                    this._currency = value;
+                    this._currency = value.ToUpper();
                 }
             }
+        }
+        //---------------Target Property-------------//
+        public string Target
+        {
             get
             {
-                return this._currency;
+                return this._target;
+            }
+            private set
+            {
+                if (string.IsNullOrWhiteSpace(value) || (value.Length != 3) || Regex.IsMatch(value, @"^[a-zA-Z]+$") == false)
+                {
+                    throw new ArgumentException(Messages.WrongFormat);
+                }
+                else
+                {
+                    this._target = value.ToUpper();
+                }
             }
         }
 
@@ -117,22 +137,19 @@ namespace OperatorOverloading.Model
         }
 
         //-----------------Calling Currency Exchange Function---------------//
-        public double ExchangeValue(double amount, string source,string target)
+        public double ExchangeValue(double amount, string source, string target)
         {
             if (this == null)
             {
                 throw new Exception(Messages.NullObject);
             }
-            else 
+            else
             {
-                if (string.IsNullOrWhiteSpace(target) || string.IsNullOrWhiteSpace(source) || target.Length != 3 || Regex.IsMatch(target, @"^[a-zA-Z]+$") == false)
-                {
-                    throw new ArgumentException(Messages.NullCurrency);
-                }
+                Target = target;
                 Conversion c = new Conversion();
-                double rate = c.ConvertCurrency(Amount, Currency, target.ToUpper());
+                double rate = c.ConvertCurrency(Amount, Currency, Target);
                 return rate;
             }
         }
-  }
+    }
 }
