@@ -19,11 +19,10 @@ namespace OperatorOverloading.Host
                 var m1 = new Money(Console.ReadLine());
 
                 Console.WriteLine("\nEnter target Currency : "); // Enter target currency
-                var m2 = new Money(0, Console.ReadLine());
+                var m2 = new Money(0, Console.ReadLine()); 
 
-                var exchangedRate = m1.ConvertCurrency(m2.Currency);
-                Console.WriteLine("\nExchanged Amount : {0} ", exchangedRate);
-                Console.WriteLine(m2.Currency);
+                var exchangedRate = m1.Convert(m2.Currency);
+                Console.WriteLine("\nExchanged Amount : {0} {1} ", exchangedRate.Amount, exchangedRate.Currency);
             }
 
             catch (ArgumentException a)

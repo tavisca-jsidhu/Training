@@ -120,6 +120,12 @@
   <data name="CurrencyNotPresent" xml:space="preserve">
     <value>"Currency isn't present"</value>
   </data>
+  <data name="DivideByZero" xml:space="preserve">
+    <value>"Divide by zero exception"</value>
+  </data>
+  <data name="InvalidFileFormat" xml:space="preserve">
+    <value>"Invalid file format"</value>
+  </data>
   <data name="InvalidInput" xml:space="preserve">
     <value>"Your Input is invalid"</value>
   </data>

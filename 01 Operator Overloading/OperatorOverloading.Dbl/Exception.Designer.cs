@@ -61,11 +61,29 @@ namespace OperatorOverloading.Dbl {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;Currency isn&apos;t Present&quot;.
+        /// </summary>
+        internal static string CurrencyNotPresent {
+            get {
+                return ResourceManager.GetString("CurrencyNotPresent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;You entered an invalid Currency.&quot;.
         /// </summary>
         internal static string InvalidCurrency {
             get {
                 return ResourceManager.GetString("InvalidCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Invalid File Format&quot;.
+        /// </summary>
+        internal static string InvalidFileFormat {
+            get {
+                return ResourceManager.GetString("InvalidFileFormat", resourceCulture);
             }
         }
     }

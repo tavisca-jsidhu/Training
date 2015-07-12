@@ -8,7 +8,7 @@ using OperatorOverloading.Dbl;
 
 namespace OperatorOverloading.Model
 {
-    public class Money
+    public class Money : ICurrencyConverter
     {
         private double _amount;
         private string _currency;
@@ -67,7 +67,7 @@ namespace OperatorOverloading.Model
                 }
             }
         }
-        //---------------Currency Property-------------//
+        //----------------Currency Property----------------//
         public string Currency
         {
             get
@@ -111,46 +111,24 @@ namespace OperatorOverloading.Model
             }
         }
 
-        //------------------Convert Currency Function--------------------//    
-        string[] seperatedData;
-        public Money ConvertCurrency(string targetCurrency)
+        //------------------Convert Function--------------------// 
+        public Money Convert(string targetCurrency) // function called by Main()
+        {
+            double amount = CurrencyConverter(this.Currency, targetCurrency) * this.Amount;
+            return new Money(amount, targetCurrency);
+        }
+
+        //-----------------CurrencyConverter Function------------------//
+        public double CurrencyConverter(string fromCurrency, string toCurrency)
         {
             Parse parseObject = new Parse();
-            double sourceAmount = this.Amount;
-            string sourceCurrency = this.Currency;
-            seperatedData = parseObject.Parsing();
-            double rate1 = CurrencyExchangeFactor(sourceCurrency);
-            double rate2 = CurrencyExchangeFactor(targetCurrency);
-            if (rate2 / rate1 == 0)
+            double rate1 = parseObject.CurrencyRate(fromCurrency); // getting rate of source currency with respect to reference currency
+            double rate2 = parseObject.CurrencyRate(toCurrency);  // getting rate of target currency with respect to reference currency
+            if (rate1 == 0)
             {
-                throw new Exception("Divide by zero error.");
+                throw new Exception(Messages.DivideByZero);
             }
-            double amount = (rate2 / rate1) * sourceAmount;
-            Money moneyObject = new Money(amount, targetCurrency);
-            return moneyObject;
-
-        }
-        //---------------Finding Exchange Factor---------------//
-        public double CurrencyExchangeFactor(string currency)
-        {
-            bool isPresent = false;
-            int iterate;
-            for (iterate = 0; iterate < seperatedData.Length; iterate++)
-            {
-                if (seperatedData[iterate].Contains(currency))
-                {
-                    isPresent = true;
-                    break; 
-                }
-            }
-            if (isPresent == false)
-            {
-                throw new System.Exception(Messages.CurrencyNotPresent);
-            }
-            string[] finalSplit = seperatedData[iterate].Split(':');
-            double multiplier;
-            Double.TryParse(finalSplit[1], out multiplier);
-            return multiplier;
+            return (rate2 / rate1); // returning rate of target currency with respect to source currency
         }
     }
 }

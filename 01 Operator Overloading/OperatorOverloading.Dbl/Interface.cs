@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace OperatorOverloading.Dbl
 {
-    public interface IParser
+    public interface ICurrencyConverter
     {
-        double ConvertCurrency(double amount, string src, string trgt);
+        double CurrencyConverter(string fromCurrency, string toCurrency);
     }
 }
 

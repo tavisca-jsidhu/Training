@@ -70,6 +70,24 @@ namespace OperatorOverloading.Model {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;Divide by zero exception&quot;.
+        /// </summary>
+        internal static string DivideByZero {
+            get {
+                return ResourceManager.GetString("DivideByZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Invalid file format&quot;.
+        /// </summary>
+        internal static string InvalidFileFormat {
+            get {
+                return ResourceManager.GetString("InvalidFileFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;Your Input is invalid&quot;.
         /// </summary>
         internal static string InvalidInput {
