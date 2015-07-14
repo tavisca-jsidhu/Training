@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Model",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Dbl", "01 Operator Overloading\OperatorOverloading.Dbl\OperatorOverloading.Dbl.csproj", "{7CD84FE5-622C-4D56-8650-AD581DF4FF57}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 Web Server", "02 Web Server", "{F508E875-993D-44D0-B9FC-D5A7EE589474}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer.Host", "02 Web Server\WebServer.Host\WebServer.Host.csproj", "{380741F3-566A-4EF2-889B-6519A2FB49ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer.Model", "02 Web Server\WebServer.Model\WebServer.Model.csproj", "{A1790F02-1314-4981-909B-B2007F397851}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +33,14 @@ Global
 		{7CD84FE5-622C-4D56-8650-AD581DF4FF57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CD84FE5-622C-4D56-8650-AD581DF4FF57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CD84FE5-622C-4D56-8650-AD581DF4FF57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{380741F3-566A-4EF2-889B-6519A2FB49ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{380741F3-566A-4EF2-889B-6519A2FB49ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{380741F3-566A-4EF2-889B-6519A2FB49ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{380741F3-566A-4EF2-889B-6519A2FB49ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1790F02-1314-4981-909B-B2007F397851}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1790F02-1314-4981-909B-B2007F397851}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1790F02-1314-4981-909B-B2007F397851}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1790F02-1314-4981-909B-B2007F397851}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,5 +49,7 @@ Global
 		{1DBD1F60-8EBB-4FA2-81B4-D2A106BE68BE} = {AFFEBA15-2665-4258-86D8-8D11FE58F415}
 		{73A794D1-97EE-4B38-BEE5-8A61697F1B5C} = {AFFEBA15-2665-4258-86D8-8D11FE58F415}
 		{7CD84FE5-622C-4D56-8650-AD581DF4FF57} = {AFFEBA15-2665-4258-86D8-8D11FE58F415}
+		{380741F3-566A-4EF2-889B-6519A2FB49ED} = {F508E875-993D-44D0-B9FC-D5A7EE589474}
+		{A1790F02-1314-4981-909B-B2007F397851} = {F508E875-993D-44D0-B9FC-D5A7EE589474}
 	EndGlobalSection
 EndGlobal
