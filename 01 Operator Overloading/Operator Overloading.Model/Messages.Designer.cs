@@ -61,6 +61,33 @@ namespace OperatorOverloading.Model {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;Currency isn&apos;t present&quot;.
+        /// </summary>
+        internal static string CurrencyNotPresent {
+            get {
+                return ResourceManager.GetString("CurrencyNotPresent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Divide by zero exception&quot;.
+        /// </summary>
+        internal static string DivideByZero {
+            get {
+                return ResourceManager.GetString("DivideByZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Invalid file format&quot;.
+        /// </summary>
+        internal static string InvalidFileFormat {
+            get {
+                return ResourceManager.GetString("InvalidFileFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;Your Input is invalid&quot;.
         /// </summary>
         internal static string InvalidInput {
@@ -88,7 +115,16 @@ namespace OperatorOverloading.Model {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Object Reference passed is null&quot;.
+        ///   Looks up a localized string similar to &quot;Invalid Currency&quot;.
+        /// </summary>
+        internal static string NullCurrency {
+            get {
+                return ResourceManager.GetString("NullCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Object Reference passed is null.&quot;.
         /// </summary>
         internal static string NullObject {
             get {
@@ -97,7 +133,7 @@ namespace OperatorOverloading.Model {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Currency can&apos;t be null&quot;.
+        ///   Looks up a localized string similar to &quot;Currency can&apos;t be null.&quot;.
         /// </summary>
         internal static string NullVal {
             get {
@@ -115,7 +151,7 @@ namespace OperatorOverloading.Model {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Currency format is wrong&quot;.
+        ///   Looks up a localized string similar to &quot;Currency format is wrong.&quot;.
         /// </summary>
         internal static string WrongFormat {
             get {

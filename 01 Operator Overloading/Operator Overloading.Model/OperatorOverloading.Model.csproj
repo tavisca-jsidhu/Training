@@ -62,6 +62,12 @@
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OperatorOverloading.Dbl\OperatorOverloading.Dbl.csproj">
+      <Project>{fa4cfd0b-3ca6-4bdd-8a34-cda578e60c34}</Project>
+      <Name>OperatorOverloading.Dbl</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

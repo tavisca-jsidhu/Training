@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1DBD1F60-8EBB-4FA2-81B4-D2A106BE68BE}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{7CD84FE5-622C-4D56-8650-AD581DF4FF57}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Operator_Overloading.Host</RootNamespace>
-    <AssemblyName>Operator Overloading.Host</AssemblyName>
+    <RootNamespace>OperatorOverloading.Dbl</RootNamespace>
+    <AssemblyName>OperatorOverloading.Dbl</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -42,23 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Exception.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Exception.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Interface.cs" />
+    <Compile Include="Parse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Operator Overloading.Model\OperatorOverloading.Model.csproj">
-      <Project>{73a794d1-97ee-4b38-bee5-8a61697f1b5c}</Project>
-      <Name>OperatorOverloading.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OperatorOverloading.Dbl\OperatorOverloading.Dbl.csproj">
-      <Project>{fa4cfd0b-3ca6-4bdd-8a34-cda578e60c34}</Project>
-      <Name>OperatorOverloading.Dbl</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="Exception.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Exception.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
