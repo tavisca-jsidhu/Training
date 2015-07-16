@@ -1,62 +1,59 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
+using System.Reflection;
+using System.Resources;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Configuration;
+using WebServer.Model;
 
 namespace WebServer.Model
 {
-    class RequestHandler
+    class Dispatcher
     {
-        private Socket _serverSocket;
-        private int _timeout;
+        private Socket _clientSocket;
         private string _contentPath;
         private Encoding _charEncoder = Encoding.UTF8;
 
-        public RequestHandler(Socket serverSocket, String contentPath)
+        public Dispatcher()
         {
-            _serverSocket = serverSocket;
-            _timeout = 5;
-            _contentPath = contentPath;
+            _contentPath = ConfigurationManager.AppSettings["virtual-directory"];
         }
 
         public void AcceptRequest()
         {
-            Socket clientSocket = null;
             try
             {
                 // Create new thread to handle the request and continue to listen the socket.
-                clientSocket = _serverSocket.Accept();
-
-                var requestHandler = new Thread(() =>
+                Application.RequestQueue.TryDequeue(out _clientSocket);
+                Task.Factory.StartNew(() =>
                 {
-                    clientSocket.ReceiveTimeout = _timeout;
-                    clientSocket.SendTimeout = _timeout;
-                    HandleTheRequest(clientSocket);
+                    this.HandleTheRequest(_clientSocket);
                 });
-                requestHandler.Start();
             }
             catch
             {
                 Console.WriteLine("Error in accepting client request");
                 Console.ReadLine();
-                if (clientSocket != null)
-                    clientSocket.Close();
+                if (_clientSocket != null)
+                    _clientSocket.Close();
             }
         }
 
         private void HandleTheRequest(Socket clientSocket)
         {
-            var requestParser = new ParseRequest();
+            var requestParser = new RequestParser();
             string requestString = DecodeRequest(clientSocket);
             requestParser.Parser(requestString);
-            Console.WriteLine(requestString);
 
             if (requestParser.HttpMethod.Equals("get", StringComparison.InvariantCultureIgnoreCase))
             {
-                var createResponse = new ResponseGenerate(clientSocket, _contentPath);
+                var createResponse = new Processor(clientSocket, _contentPath);
                 createResponse.RequestUrl(requestParser.HttpUrl);
             }
             else
@@ -83,10 +80,13 @@ namespace WebServer.Model
             }
             catch (Exception)
             {
-                //Console.WriteLine("buffer full");
                 Console.ReadLine();
             }
             return _charEncoder.GetString(buffer, 0, receivedBufferlen);
+        }
+        internal void Stop()
+        {
+            _clientSocket.Close();
         }
     }
 }

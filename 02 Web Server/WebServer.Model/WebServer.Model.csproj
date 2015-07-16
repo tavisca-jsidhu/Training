@@ -39,11 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ResponseGenerate.cs" />
+    <Compile Include="Application.cs" />
+    <Compile Include="Dispatcher.cs" />
+    <Compile Include="Interface\IQueue.cs" />
+    <Compile Include="Listener.cs" />
+    <Compile Include="Processor.cs" />
+    <Compile Include="Queue\InprocQueue.cs" />
     <Compile Include="FileHandler.cs" />
-    <Compile Include="RequestHandler.cs" />
     <Compile Include="ParseRequest.cs" />
-    <Compile Include="WebServer.cs" />
+    <Compile Include="Server.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

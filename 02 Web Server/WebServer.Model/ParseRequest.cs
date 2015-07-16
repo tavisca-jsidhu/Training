@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebServer.Model
 {
-    public class ParseRequest
+    public class RequestParser
     {
         private Encoding _charEncoder = Encoding.UTF8;
         public string HttpMethod;

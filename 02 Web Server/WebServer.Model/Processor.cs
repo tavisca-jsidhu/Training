@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace WebServer.Model
 {
-    public class ResponseGenerate
+    public class Processor
     {
         RegistryKey registryKey = Registry.ClassesRoot;
         public Socket ClientSocket = null;
@@ -17,7 +17,7 @@ namespace WebServer.Model
         private string _contentPath;
         public FileHandler FileHandler;
 
-        public ResponseGenerate(Socket clientSocket, string contentPath)
+        public Processor(Socket clientSocket, string contentPath)
         {
             _contentPath = contentPath;
             ClientSocket = clientSocket;
