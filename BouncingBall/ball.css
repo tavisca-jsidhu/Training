@@ -1,0 +1,9 @@
+﻿.bounce {
+    background: #000;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    position: relative;
+    left: 0px;
+    top: 0px;
+}
