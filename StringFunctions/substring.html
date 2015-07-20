@@ -1,0 +1,36 @@
+﻿<html>
+<head>
+    <title>Sum</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="substring.js"></script>
+</head>
+
+<body>
+    <div align="center" class="container">
+        <h1>Find Sub-string</h1>
+    </div>
+    <br />
+    <br />
+    <div align="center" class="container">
+        <form name="myform" class="form-group">
+            Enter String :
+            <input type="text" id="string" value=""><br />
+            <br />
+            Enter starting index :
+            <input type="number" id="number1" value=""><br />
+            <br />
+            Enter ending index :
+            <input type="number" id="number2" value=""><br />
+            <br />
+            <button type="button" onclick = "result.value = string.value.SubString(number1.value, number2.value)"  class="btn btn-success">Sub-string</button>
+            <br />
+            <br />
+            Result :
+            <input type="text" id="result" value="">
+        </form>
+    </div>
+</body>
+</html>
