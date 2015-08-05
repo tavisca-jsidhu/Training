@@ -9,6 +9,8 @@ namespace Tavisca.EmployeeManagement.Interface
 {
     public interface IEmployeeAuthenticateManager
     {
-        Credentials AuthenticateUser(Credentials credentials);
+        Employee AuthenticateUser(Credentials credentials);
+
+        int UpdatePassword(ChangePassword change);
     }
 }

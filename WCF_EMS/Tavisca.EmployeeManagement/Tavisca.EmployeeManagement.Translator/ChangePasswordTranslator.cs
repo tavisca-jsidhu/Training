@@ -19,16 +19,15 @@ namespace Tavisca.EmployeeManagement.Translator
             };
         }
 
-        public static int ToDataContract(this Model.ChangePassword change)
+        public static DataContract.ChangePassword ToDataContract(this DataContract.ChangePassword change)
         {
-            if (change == null) return 0;
-            //return new DataContract.ChangePassword()
-            //{
-            //    EmailId = change.EmailId,
-            //    OldPassword = change.OldPassword,
-            //    NewPassword = change.NewPassword
-            //};
-            return 1;
+            if (change == null) return null;
+            return new DataContract.ChangePassword()
+            {
+                EmailId = change.EmailId,
+                OldPassword = change.OldPassword,
+                NewPassword = change.NewPassword
+            };
         }
     }
 }

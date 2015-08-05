@@ -14,7 +14,9 @@ namespace Tavisca.EmployeeManagement.ServiceContract
     {
 
         [WebInvoke(Method = "POST", UriTemplate = "credentials", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        Credentials AuthenticateUser(Credentials credentials);
-        
+        EmployeeResponse AuthenticateUser(Credentials credentials);
+
+        [WebInvoke(Method = "POST", UriTemplate = "changePassword", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        ChangePasswordResponse UpdatePassword(ChangePassword change);
     }
 }

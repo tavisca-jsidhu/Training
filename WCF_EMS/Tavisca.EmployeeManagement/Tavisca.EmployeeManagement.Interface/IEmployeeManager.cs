@@ -14,5 +14,7 @@ namespace Tavisca.EmployeeManagement.Interface
         List<Employee> GetAll();
 
         List<Remark> GetRemarks(string employeeId);
+
+        Pagination GetPageData(string employeeId, string pageNumber);
     }
 }

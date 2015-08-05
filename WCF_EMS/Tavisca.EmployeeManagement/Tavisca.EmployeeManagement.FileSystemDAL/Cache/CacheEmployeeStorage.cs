@@ -42,14 +42,15 @@ namespace Tavisca.EmployeeManagement.FileStorage
 
         public Model.Employee Get(string employeeId)
         {
-            Model.Employee result;
-            result = _cacheManager.Get(string.Format(KEYFORMAT, employeeId), CACHEMANAGER) as Model.Employee;
-            if (result == null)
-            {
-                result = _innerStorage.Get(employeeId);
-                _cacheManager.Add(string.Format(KEYFORMAT, employeeId), result, CACHEMANAGER);
-            }
-            return result;
+            return _innerStorage.Get(employeeId);
+            //Model.Employee result;
+            //result = _cacheManager.Get(string.Format(KEYFORMAT, employeeId), CACHEMANAGER) as Model.Employee;
+            //if (result == null)
+            //{
+            //    result = _innerStorage.Get(employeeId);
+            //    _cacheManager.Add(string.Format(KEYFORMAT, employeeId), result, CACHEMANAGER);
+            //}
+            //return result;
         }
 
         public List<Model.Employee> GetAll()
@@ -70,6 +71,12 @@ namespace Tavisca.EmployeeManagement.FileStorage
         public int UpdatePassword(ChangePassword change)
         {
             return _innerStorage.UpdatePassword(change);
+        }
+
+
+        public Pagination GetPageData(string employeeId, string pageNumber)
+        {
+            return _innerStorage.GetPageData(employeeId, pageNumber);
         }
     }
 }

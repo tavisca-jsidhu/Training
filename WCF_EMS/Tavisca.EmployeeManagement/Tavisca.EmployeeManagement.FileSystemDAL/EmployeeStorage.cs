@@ -92,7 +92,7 @@ namespace Tavisca.EmployeeManagement.FileStorage
                     conEmployee.Open();
                     SqlDataReader reader = command.ExecuteReader();
 
-                    while (reader.Read())
+                    if (reader.Read())
                     {
                         emp.Id = reader[0].ToString();
                         emp.Title = reader[1].ToString();
@@ -101,6 +101,10 @@ namespace Tavisca.EmployeeManagement.FileStorage
                         emp.Email = reader[4].ToString();
                         emp.Phone = reader[5].ToString();
                         emp.JoiningDate = Convert.ToDateTime(reader[7]);
+                    }
+                    else
+                    {
+                        throw new System.Exception("No data found.");
                     }
                     reader.Close();
                 }
@@ -117,7 +121,6 @@ namespace Tavisca.EmployeeManagement.FileStorage
                     command.Parameters["@emp_id"].Value = employeeId;
 
                     SqlDataReader reader = command.ExecuteReader();
-
                     while (reader.Read())
                     {
                         Model.Remark remark = new Model.Remark();
@@ -156,12 +159,19 @@ namespace Tavisca.EmployeeManagement.FileStorage
 
                     conAllEmployee.Open();
                     SqlDataReader remarkReader = command.ExecuteReader();
-                    while (remarkReader.Read())
+                    if (remarkReader.Read())
                     {
-                        Model.Remark remark = new Model.Remark();
-                        remark.Text = remarkReader[1].ToString();
-                        remark.CreateTimeStamp = Convert.ToDateTime(remarkReader[2]);
-                        remarkList.Add(remark);
+                        while (remarkReader.Read())
+                        {
+                            Model.Remark remark = new Model.Remark();
+                            remark.Text = remarkReader[1].ToString();
+                            remark.CreateTimeStamp = Convert.ToDateTime(remarkReader[2]);
+                            remarkList.Add(remark);
+                        }
+                    }
+                    else
+                    {
+                        throw new System.Exception("No data found.");
                     }
                     remarkReader.Close();
                 }
@@ -244,7 +254,7 @@ namespace Tavisca.EmployeeManagement.FileStorage
                     }
                     else
                     {
-                        return null;
+                        throw new System.Exception("Incorrect Email or Password.");
                     }
                     conEmployee.Close();
                 }
@@ -301,6 +311,66 @@ namespace Tavisca.EmployeeManagement.FileStorage
                 var rethrow = ExceptionPolicy.HandleException("data.policy", ex);
                 if (rethrow) throw;
                 return 0;
+            }
+        }
+
+        public Pagination GetPageData(string employeeId, string pageNumber)
+        {
+            try
+            {
+                Model.Pagination pagination = new Model.Pagination();
+                SqlConnection conEmployee = new SqlConnection("Data Source=TRAINING13;Initial Catalog=WCF-EMS;Persist Security Info=True;User ID=sa;Password=test123!@#");
+
+                using (conEmployee)
+                {
+                    SqlCommand command = new SqlCommand("get_record_count", conEmployee);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@emp_id", SqlDbType.Int));
+                    command.Parameters["@emp_id"].Value = employeeId;
+
+                    conEmployee.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        pagination.Count = Convert.ToInt32(reader[0]);
+                    }
+                    reader.Close();
+                }
+                conEmployee.Close();
+
+                List<Model.Remark> remarkList = new List<Model.Remark>(); //displaying remarks of employee
+                SqlConnection conRemark = new SqlConnection("Data Source=TRAINING13;Initial Catalog=WCF-EMS;Persist Security Info=True;User ID=sa;Password=test123!@#");
+                conRemark.Open();
+                using (conRemark)
+                {
+                    SqlCommand command = new SqlCommand("get_paginated_remark", conRemark);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@emp_id", SqlDbType.Int));
+                    command.Parameters.Add(new SqlParameter("@page", SqlDbType.Int));
+                    command.Parameters["@emp_id"].Value = employeeId;
+                    command.Parameters["@page"].Value = pageNumber;
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Model.Remark remark = new Model.Remark();
+                        remark.Text = reader[2].ToString();
+                        remark.CreateTimeStamp = Convert.ToDateTime(reader[3]);
+                        remarkList.Add(remark);
+                    }
+                    pagination.Remarks = remarkList;
+                    reader.Close();
+                }
+                conEmployee.Close();
+                return pagination;
+            }
+            catch (Exception ex)
+            {
+                var rethrow = ExceptionPolicy.HandleException("data.policy", ex);
+                if (rethrow) throw;
+                return null;
             }
         }
 

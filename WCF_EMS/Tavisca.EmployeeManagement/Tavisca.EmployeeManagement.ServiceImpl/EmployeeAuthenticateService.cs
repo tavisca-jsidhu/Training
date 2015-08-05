@@ -21,19 +21,49 @@ namespace Tavisca.EmployeeManagement.ServiceImpl
             _manager = manager;
         }
 
-        public DataContract.Credentials AuthenticateUser(DataContract.Credentials credentials)
+        public DataContract.EmployeeResponse AuthenticateUser(DataContract.Credentials credentials)
         {
+            DataContract.EmployeeResponse response = new DataContract.EmployeeResponse();
             try
             {
                 var result = _manager.AuthenticateUser(credentials.ToDomainModel());
                 if (result == null) return null;
-                return result.ToDataContract();
+                response.RequestedEmployee = result.ToDataContract();
+                return response;
             }
             catch (Exception ex)
             {
                 Exception newEx;
                 var rethrow = ExceptionPolicy.HandleException("service.policy", ex, out newEx);
-                throw newEx;
+                response.ResponseStatus.Code = "500";
+                response.ResponseStatus.Message = ex.Message;
+                return response;
+            }
+        }
+
+        public DataContract.ChangePasswordResponse UpdatePassword(DataContract.ChangePassword change)
+        {
+            DataContract.ChangePasswordResponse response = new DataContract.ChangePasswordResponse();
+            try
+            {
+                var result = _manager.UpdatePassword(change.ToDomainModel());
+                DataContract.Employee emp = new DataContract.Employee();
+                if (result != 0)
+                {
+                    return response;
+                }
+                else
+                {
+                    throw new System.Exception("You entered wrong password.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Exception newEx;
+                var rethrow = ExceptionPolicy.HandleException("service.policy", ex, out newEx);
+                response.ResponseStatus.Code = "500";
+                response.ResponseStatus.Message = ex.Message;
+                return response;
             }
         }
     }

@@ -22,5 +22,7 @@ namespace Tavisca.EmployeeManagement.Interface
         Employee AuthenticateUser(Credentials credentials);
 
         int UpdatePassword(ChangePassword change);
+
+        Pagination GetPageData(string employeeId, string pageNumber);
     }
 }

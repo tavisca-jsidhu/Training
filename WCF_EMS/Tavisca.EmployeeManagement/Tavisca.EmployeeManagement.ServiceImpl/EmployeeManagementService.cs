@@ -20,67 +20,43 @@ namespace Tavisca.EmployeeManagement.ServiceImpl
 
         IEmployeeManagementManager _manager;
 
-        public DataContract.Employee Create(DataContract.Employee employee)
+        public DataContract.EmployeeResponse Create(DataContract.Employee employee)
         {
+            DataContract.EmployeeResponse response = new DataContract.EmployeeResponse();
             try
             {
                 var result = _manager.Create(employee.ToDomainModel());
                 if (result == null) return null;
-                return result.ToDataContract();
+                response.RequestedEmployee = result.ToDataContract();
+                return response;
             }
             catch (Exception ex)
             {
                 Exception newEx;
                 var rethrow = ExceptionPolicy.HandleException("service.policy", ex, out newEx);
-                throw newEx;
+                response.ResponseStatus.Code = "500";
+                response.ResponseStatus.Message = ex.Message;
+                return response;
             }
         }
 
-        public DataContract.Remark AddRemark(string employeeId, DataContract.Remark remark)
+        public DataContract.RemarkResponse AddRemark(string employeeId, DataContract.Remark remark)
         {
+            DataContract.RemarkResponse response = new DataContract.RemarkResponse();
             try
             {
                 var result = _manager.AddRemark(employeeId, remark.ToDomainModel());
                 if (result == null) return null;
-                return result.ToDataContract();
+                response.RequestedRemark = result.ToDataContract();
+                return response;
             }
             catch (Exception ex)
             {
                 Exception newEx;
                 var rethrow = ExceptionPolicy.HandleException("service.policy", ex, out newEx);
-                throw newEx;
-            }
-        }
-
-
-        public DataContract.Employee AuthenticateUser(DataContract.Credentials credentials)
-        {
-            try
-            {
-                var result = _manager.AuthenticateUser(credentials.ToDomainModel());
-                if (result == null) return null;
-                return result.ToDataContract();
-            }
-            catch (Exception ex)
-            {
-                Exception newEx;
-                var rethrow = ExceptionPolicy.HandleException("service.policy", ex, out newEx);
-                throw newEx;
-            }
-        }
-
-        public int UpdatePassword(DataContract.ChangePassword change)
-        {
-            try
-            {
-                int result = _manager.UpdatePassword(change.ToDomainModel());
-                return result;
-            }
-            catch (Exception ex)
-            {
-                Exception newEx;
-                var rethrow = ExceptionPolicy.HandleException("service.policy", ex, out newEx);
-                throw newEx;
+                response.ResponseStatus.Code = "500";
+                response.ResponseStatus.Message = ex.Message;
+                return response;
             }
         }
     }

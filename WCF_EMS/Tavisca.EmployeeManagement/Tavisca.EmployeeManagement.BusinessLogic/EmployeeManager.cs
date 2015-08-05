@@ -31,5 +31,11 @@ namespace Tavisca.EmployeeManagement.BusinessLogic
         {
             return _storage.GetRemarks(employeeId);
         }
+
+
+        public Pagination GetPageData(string employeeId, string pageNumber)
+        {
+            return _storage.GetPageData(employeeId, pageNumber);
+        }
     }
 }

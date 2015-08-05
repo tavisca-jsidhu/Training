@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChangePasswordTranslator.cs" />
+    <Compile Include="PaginationTranslator.cs" />
     <Compile Include="CredentialsTranslator.cs" />
     <Compile Include="RemarkTranslator.cs" />
     <Compile Include="EmployeeTranslator.cs" />

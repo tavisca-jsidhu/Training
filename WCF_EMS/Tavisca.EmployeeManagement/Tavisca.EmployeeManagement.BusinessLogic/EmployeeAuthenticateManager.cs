@@ -8,7 +8,7 @@ using Tavisca.EmployeeManagement.Model;
 
 namespace Tavisca.EmployeeManagement.BusinessLogic
 {
-    public class EmployeeAuthenticateManager
+    public class EmployeeAuthenticateManager : IEmployeeAuthenticateManager
     {
         public EmployeeAuthenticateManager(IEmployeeStorage storage)
         {
@@ -20,6 +20,12 @@ namespace Tavisca.EmployeeManagement.BusinessLogic
         public Employee AuthenticateUser(Credentials credentials)
         {
             return _storage.AuthenticateUser(credentials);
+        }
+
+
+        public int UpdatePassword(ChangePassword change)
+        {
+            return _storage.UpdatePassword(change);
         }
     }
 }

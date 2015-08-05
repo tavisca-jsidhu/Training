@@ -44,6 +44,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChangePassword.cs" />
+    <Compile Include="ChangePasswordResponse.cs" />
+    <Compile Include="RemarkListResponse.cs" />
+    <Compile Include="EmployeeListResponse.cs" />
+    <Compile Include="PaginationResponse.cs" />
+    <Compile Include="RemarkResponse.cs" />
+    <Compile Include="EmployeeResponse.cs" />
+    <Compile Include="Result.cs" />
+    <Compile Include="Status.cs" />
+    <Compile Include="Pagination.cs" />
     <Compile Include="Credentials.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
