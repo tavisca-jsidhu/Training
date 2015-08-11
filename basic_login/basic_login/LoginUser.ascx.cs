@@ -6,11 +6,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
-using Model;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Net;
-using basic_login.Model;
+using Basic_Login.Model;
 
 namespace basic_login.basic
 {
@@ -27,8 +26,7 @@ namespace basic_login.basic
             Credentials credentials = new Credentials();
             credentials.EmailId = TextBoxUN.Text;
             credentials.Password = TextBoxPass.Text;
-            HttpClient client = new HttpClient();
-            var empResponse = client.UploadData<Credentials, EmployeeResponse>("http://localhost:53412/EmployeeAuthenticateService.svc/credentials", credentials);
+            var empResponse = Credentials.AuthenticateUser(credentials);
             if (empResponse.ResponseStatus.Code == "500")
             {
                 Response.Write(empResponse.ResponseStatus.Message);

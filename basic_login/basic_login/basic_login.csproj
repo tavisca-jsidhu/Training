@@ -376,19 +376,6 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Model\PaginationResponse.cs" />
-    <Compile Include="Model\RemarkResponse.cs" />
-    <Compile Include="Model\EmployeeResponse.cs" />
-    <Compile Include="Model\Status.cs" />
-    <Compile Include="Model\ModifyPasswordResponse.cs" />
-    <Compile Include="Model\Result.cs" />
-    <Compile Include="Model\ModifyPassword.cs" />
-    <Compile Include="Model\HttpClient.cs" />
-    <Compile Include="Model\Credentials.cs" />
-    <Compile Include="Model\Employee.cs" />
-    <Compile Include="Model\Pagination.cs" />
-    <Compile Include="Model\Remark.cs" />
-    <Compile Include="Model\Serializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -441,11 +428,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UserControl\" />
+    <Folder Include="UserControls\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Basic_Login.Model\Basic_Login.Model.csproj">
+      <Project>{ae42c22b-ced1-4297-98b7-d4d5c5cd22d6}</Project>
+      <Name>Basic_Login.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

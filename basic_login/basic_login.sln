@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "basic_login", "basic_login\basic_login.csproj", "{AC38EBFA-65C6-4D1B-BE28-D72EEA33B192}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basic_Login.Model", "Basic_Login.Model\Basic_Login.Model.csproj", "{AE42C22B-CED1-4297-98B7-D4D5C5CD22D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{AC38EBFA-65C6-4D1B-BE28-D72EEA33B192}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC38EBFA-65C6-4D1B-BE28-D72EEA33B192}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC38EBFA-65C6-4D1B-BE28-D72EEA33B192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE42C22B-CED1-4297-98B7-D4D5C5CD22D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE42C22B-CED1-4297-98B7-D4D5C5CD22D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE42C22B-CED1-4297-98B7-D4D5C5CD22D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE42C22B-CED1-4297-98B7-D4D5C5CD22D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

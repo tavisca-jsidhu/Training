@@ -4,8 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Model;
-using basic_login.Model;
+using Basic_Login.Model;
 
 namespace basic_login
 {
@@ -19,7 +18,7 @@ namespace basic_login
                 HttpClient client = new HttpClient();
                 HttpCookie cookie = Request.Cookies["UserCredentials"];
                 emp_id = cookie["Emp_id"];
-                var empResponse = client.GetData<PaginationResponse>("http://localhost:53412/EmployeeService.svc/pagination/" + emp_id + "/1");
+                var empResponse = Pagination.ViewRemark(emp_id, "1");
                 if (empResponse.ResponseStatus.Code == "500")
                 {
                     Response.Write(empResponse.ResponseStatus.Message);
@@ -39,7 +38,7 @@ namespace basic_login
             HttpClient client = new HttpClient();
             HttpCookie cookie = Request.Cookies["UserCredentials"];
             emp_id = cookie["Emp_id"];
-            var empResponse = client.GetData<PaginationResponse>("http://localhost:53412/EmployeeService.svc/pagination/" + emp_id + "/" + GridView1.PageIndex);
+            var empResponse = Pagination.ViewRemark(emp_id, Convert.ToString(GridView1.PageIndex));
             if (empResponse.ResponseStatus.Code == "500")
             {
                 Response.Write(empResponse.ResponseStatus.Message);
@@ -89,7 +88,7 @@ namespace basic_login
             HttpClient client = new HttpClient();
             HttpCookie cookie = Request.Cookies["UserCredentials"];
             emp_id = cookie["Emp_id"];
-            var empResponse = client.GetData<PaginationResponse>("http://localhost:53412/EmployeeService.svc/pagination/" + emp_id + "/" + GridView1.PageIndex);
+            var empResponse = Pagination.ViewRemark(emp_id, Convert.ToString(GridView1.PageIndex));
             if (empResponse.ResponseStatus.Code == "500")
             {
                 Response.Write(empResponse.ResponseStatus.Message);

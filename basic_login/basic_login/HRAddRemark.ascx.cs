@@ -7,10 +7,10 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
-using Model;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Net;
+using Basic_Login.Model;
 
 namespace basic_login
 {
@@ -43,19 +43,11 @@ namespace basic_login
         {
             Employee employee = new Employee();
             Remark remark = new Remark();
-            employee.Id = Convert.ToInt32(DropDownList1.Text);
+            string employeeId = DropDownList1.Text;
             remark.Text = TextArea1.InnerText;
+            var response = Remark.AddRemark(employeeId, remark);
 
-            MemoryStream stream1 = new MemoryStream();
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Remark));
-            ser.WriteObject(stream1, remark);
-            stream1.Position = 0;
-            StreamReader sr = new StreamReader(stream1);
-            // Console.Write("JSON form of Person object: ");
-            string d = sr.ReadToEnd();
-            var client = new WebClient();
-            client.Headers.Add("Content-Type", "application/json");
-            var response = client.UploadString("http://localhost:53412/EmployeeManagementService.svc/employee/" + employee.Id + "/remark", "POST", d);
+            Response.Write(response.ResponseStatus.Message);
         }
     }
 }

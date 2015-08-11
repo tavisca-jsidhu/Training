@@ -90,6 +90,7 @@
             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TextBoxAddPhone" ErrorMessage="Phone is Required." ForeColor="Red"></asp:RequiredFieldValidator>
         </td>
     </tr>
+    <tr>
         <td class="auto-style6">Password :</td>
         <td class="auto-style7">
             <asp:TextBox ID="TextBoxAddPass" runat="server" Width="180px" TextMode="Password" ValidationGroup="AddEmployee"></asp:TextBox>

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Model;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Net;
-using basic_login.Model;
+using Basic_Login.Model;
 
 namespace basic_login
 {

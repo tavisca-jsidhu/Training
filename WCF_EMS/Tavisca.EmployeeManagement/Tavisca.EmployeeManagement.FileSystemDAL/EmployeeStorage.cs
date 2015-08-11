@@ -347,9 +347,9 @@ namespace Tavisca.EmployeeManagement.FileStorage
                     SqlCommand command = new SqlCommand("get_paginated_remark", conRemark);
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add(new SqlParameter("@emp_id", SqlDbType.Int));
-                    command.Parameters.Add(new SqlParameter("@page", SqlDbType.Int));
+                    command.Parameters.Add(new SqlParameter("@pageIndex", SqlDbType.Int));
                     command.Parameters["@emp_id"].Value = employeeId;
-                    command.Parameters["@page"].Value = pageNumber;
+                    command.Parameters["@pageIndex"].Value = pageNumber;
 
                     SqlDataReader reader = command.ExecuteReader();
 

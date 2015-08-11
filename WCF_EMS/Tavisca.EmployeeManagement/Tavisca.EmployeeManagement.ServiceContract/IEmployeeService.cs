@@ -23,5 +23,7 @@ namespace Tavisca.EmployeeManagement.ServiceContract
 
         [WebGet(UriTemplate = "pagination/{employeeId}/{pageNumber}", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         PaginationResponse GetPageData(string employeeId, string pageNumber);
+    
+
     }
 }
