@@ -1,0 +1,32 @@
+﻿ @model Basic_Login.Model.Remark
+
+@{
+   ViewBag.Title = "AddRemark";
+}
+
+
+<form action="/HR/SaveRemark" method="post">
+   <h2>SaveEmployee</h2>
+   <section id="addEmployeeForm">
+       @using (Html.BeginForm("SaveEmployee", "HR"))
+       {
+           @Html.AntiForgeryToken()
+           @Html.ValidationSummary(true)
+
+           <fieldset>
+               <legend>Add Remark Form</legend>
+               <ol>
+                   <li>
+                       @Html.DropDownList("Employee", ViewData["EmpList"] as List<SelectListItem>)
+                   </li>
+                   <li>
+                       @Html.LabelFor(m => m.Text)
+                       @Html.TextAreaFor(m => m.Text)
+                       @Html.ValidationMessageFor(m => m.Text)
+                   </li>
+               </ol>
+               <input type="submit" value="Add Remark" />
+           </fieldset>
+       }
+   </section>
+</form>

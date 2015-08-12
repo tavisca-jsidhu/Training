@@ -1,0 +1,22 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.StaticPagedList<Basic_Login.Model.Remark>
+
+
+@{
+    ViewBag.Title = "ViewRemark";
+    WebGrid grid = new WebGrid(Model);
+}
+
+<h2>View Remarks</h2>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@grid.GetHtml(columns: new[]
+{
+   grid.Column("Text"),
+   grid.Column("CreateTimeStamp")
+})
+<div class="center">
+   Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("ViewRemark", new { pageIndex = page }))
+</div>

@@ -1,0 +1,54 @@
+﻿@model Basic_Login.Model.Employee
+
+@{
+    ViewBag.Title = "AddEmployeeView";
+}
+<form action="/HR/AddEmployee" , method="post">
+    <h2>Add Employee</h2>
+
+    <section id="addEmployeeForm">
+    @using (Html.BeginForm("AddEmployee", "HR"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>Add Employee Form</legend>
+            <ol>
+                <li>
+               
+                    @Html.LabelFor(m => m.Title)
+                    @Html.TextBoxFor(m => m.Title)
+                    @Html.ValidationMessageFor(m => m.Title)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.FirstName)
+                    @Html.TextBoxFor(m => m.FirstName)
+                    @Html.ValidationMessageFor(m => m.FirstName)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.LastName)
+                    @Html.TextBoxFor(m => m.LastName)
+                    @Html.ValidationMessageFor(m => m.LastName)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email)
+                    @Html.ValidationMessageFor(m => m.Email)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.Phone)
+                    @Html.TextBoxFor(m => m.Phone)
+                    @Html.ValidationMessageFor(m => m.Phone)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.Password)
+                    @Html.TextBoxFor(m => m.Password)
+                    @Html.ValidationMessageFor(m => m.Password)
+                </li>
+            </ol>
+            <input type="submit" value="Add Employee" />
+        </fieldset>
+    }
+</section>
+ </form>

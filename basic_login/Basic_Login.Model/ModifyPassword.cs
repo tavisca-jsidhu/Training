@@ -14,7 +14,7 @@ namespace Basic_Login.Model
 
         public string NewPassword { get; set; }
 
-        public static ModifyPasswordResponse AddEmployee(ModifyPassword change)
+        public static ModifyPasswordResponse UpdatePassword(ModifyPassword change)
         {
             HttpClient client = new HttpClient();
             var connString = System.Configuration.ConfigurationManager.AppSettings["EmployeeAuthenticateServiceURL"];
