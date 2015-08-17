@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RoleBasedSecurity
 {
-   public interface ICustomPrincipal:System.Security.Principal.IPrincipal
+    public interface ICustomPrincipal : System.Security.Principal.IPrincipal
     {
         string Id { get; set; }
 
@@ -14,9 +14,10 @@ namespace RoleBasedSecurity
 
         string FirstName { get; set; }
 
-         string LastName { get; set; }
+        string LastName { get; set; }
 
-         string EmailId { get; set; }
+        string EmailId { get; set; }
+
         string Password { get; set; }
     }
 }

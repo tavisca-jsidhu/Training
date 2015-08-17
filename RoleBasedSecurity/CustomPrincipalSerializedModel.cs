@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RoleBasedSecurity
 {
-   public class CustomPrincipalSerializedModel
+    public class CustomPrincipalSerializedModel
     {
         public string Id { get; set; }
 
@@ -17,6 +17,7 @@ namespace RoleBasedSecurity
         public string LastName { get; set; }
 
         public string EmailId { get; set; }
+
         public string Password { get; set; }
     }
 }

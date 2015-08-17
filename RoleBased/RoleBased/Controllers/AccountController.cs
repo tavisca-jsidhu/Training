@@ -29,27 +29,55 @@ namespace RoleBased.Controllers
             return View();
         }
 
-        public ActionResult Login(LoginModel model, string returnUrl)
-        {
-            Credentials credentials = new Credentials();
-            credentials.EmailId = model.UserName;
-            credentials.Password = model.Password;
-            var response = Credentials.AuthenticateUser(credentials);
-            if (response.ResponseStatus.Code == "500")
-            {
-                ModelState.AddModelError("", "Incorrect User-EmaiId or Password!");
-                return View("Login");
-            }
-            else
-            {
+       [HttpPost]
+       [AllowAnonymous]
+       [ValidateAntiForgeryToken]
+       public ActionResult Login(LoginModel model, string returnUrl)
+       {
+           Credentials credentials = new Credentials();
+           credentials.EmailId = model.EmailId;
+           credentials.Password = model.Password;
+           var response = Credentials.AuthenticateUser(credentials);
+           if (response.ResponseStatus.Code == "500")
+           {
+               ModelState.AddModelError("", "Incorrect User-EmaiId or Password!");
+               return View("Login");
+           }
+           else
+           {
 
-                CreateAuthenticationTicket(response.RequestedEmployee);
-                if (HttpContext.User.IsInRole("hr") == true)
-                    return View("HRHome");
-                else
-                    return View("EmployeeHome");
-            }
-        }
+               CreateAuthenticationTicket(response.RequestedEmployee);
+               if (string.Equals(response.RequestedEmployee.Title, "hr", StringComparison.OrdinalIgnoreCase))
+                   return View("HRHome");
+               else if (string.Equals(response.RequestedEmployee.Title, "emp", StringComparison.OrdinalIgnoreCase))
+                   return View("EmployeeHome");
+               else
+                   return View("Login");
+
+           }
+ 
+       }
+
+       public void CreateAuthenticationTicket(Employee requestedEmployee)
+       {
+
+           CustomPrincipalSerializedModel serializeModel = new CustomPrincipalSerializedModel();
+           serializeModel.Id = requestedEmployee.Id.ToString();
+           serializeModel.Title = requestedEmployee.Title;
+           serializeModel.FirstName = requestedEmployee.FirstName;
+           serializeModel.LastName = requestedEmployee.LastName;
+           serializeModel.EmailId = requestedEmployee.Email;
+           serializeModel.Password = requestedEmployee.Password;
+           System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+           string userData = serializer.Serialize(serializeModel);
+
+           FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
+             1, requestedEmployee.Email, DateTime.Now, DateTime.Now.AddMinutes(10), false, userData);
+           string encTicket = FormsAuthentication.Encrypt(authTicket);
+           HttpCookie Cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
+           Response.Cookies.Add(Cookie);
+       }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -57,7 +85,6 @@ namespace RoleBased.Controllers
         {
             try
             {
-
                 HttpCookie cookies = System.Web.HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
                 cookies.Expires = DateTime.Now.AddDays(-1);
                 System.Web.HttpContext.Current.Response.Cookies.Add(cookies);
@@ -157,11 +184,11 @@ namespace RoleBased.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Manage(LocalPasswordModel model)
        {
-           bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-           ViewBag.HasLocalPassword = hasLocalAccount;
-           ViewBag.ReturnUrl = Url.Action("Manage");
-           if (hasLocalAccount)
-           {
+           //bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
+           //ViewBag.HasLocalPassword = hasLocalAccount;
+           //ViewBag.ReturnUrl = Url.Action("Manage");
+           //if (hasLocalAccount)
+           //{
                if (ModelState.IsValid)
                {
                    // ChangePassword will throw an exception rather than return false in certain failure scenarios.
@@ -193,9 +220,9 @@ namespace RoleBased.Controllers
 
                    }
                }
-           }
-           else
-           {
+           //}
+           //else
+           //{
                // User does not have a local password so remove any validation errors caused by a missing
                // OldPassword field
                ModelState state = ModelState["OldPassword"];
@@ -216,7 +243,7 @@ namespace RoleBased.Controllers
                        ModelState.AddModelError("", String.Format("Unable to create local account. An account with the name \"{0}\" may already exist.", User.Identity.Name));
                    }
                }
-           }
+           //}
 
            // If we got this far, something failed, redisplay form
            return View(model);
@@ -349,26 +376,6 @@ namespace RoleBased.Controllers
             ViewBag.ShowRemoveButton = externalLogins.Count > 1 || OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             return PartialView("_RemoveExternalLoginsPartial", externalLogins);
         }
-        public void CreateAuthenticationTicket(Employee requestedEmployee)
-        {
-
-            CustomPrincipalSerializedModel serializeModel = new CustomPrincipalSerializedModel();
-            serializeModel.Id = requestedEmployee.Id.ToString();
-            serializeModel.Title = requestedEmployee.Title;
-            serializeModel.FirstName = requestedEmployee.FirstName;
-            serializeModel.LastName = requestedEmployee.LastName;
-            serializeModel.EmailId = requestedEmployee.Email;
-            serializeModel.Password = requestedEmployee.Password;
-            System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-            string userData = serializer.Serialize(serializeModel);
-
-            FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
-              1, requestedEmployee.Email, DateTime.Now, DateTime.Now.AddMinutes(10), false, userData);
-            string encTicket = FormsAuthentication.Encrypt(authTicket);
-            HttpCookie Cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
-            Response.Cookies.Add(Cookie);
-        }
-
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)
         {

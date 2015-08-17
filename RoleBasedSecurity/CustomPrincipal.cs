@@ -19,7 +19,7 @@ namespace RoleBasedSecurity
         public bool IsInRole(string role)
         {
             return Identity != null && Identity.IsAuthenticated &&
-               !string.IsNullOrWhiteSpace(role) && string.Equals(role,Title,StringComparison.OrdinalIgnoreCase);
+               !string.IsNullOrWhiteSpace(role) && string.Equals(role, Title, StringComparison.OrdinalIgnoreCase);
         }
 
         public string Id { get; set; }
@@ -31,6 +31,7 @@ namespace RoleBasedSecurity
         public string LastName { get; set; }
 
         public string EmailId { get; set; }
+
         public string Password { get; set; }
     }
 }

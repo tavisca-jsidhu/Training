@@ -58,8 +58,8 @@ namespace RoleBased.Models
     public class LoginModel
     {
         [Required]
-        [Display(Name = "User name")]
-        public string UserName { get; set; }
+        [Display(Name = "Email Id")]
+        public string EmailId { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

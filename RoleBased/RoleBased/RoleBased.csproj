@@ -311,6 +311,7 @@
     <Content Include="Views\HR\SaveRemark.cshtml" />
     <Content Include="Views\Account\EmployeeHome.cshtml" />
     <Content Include="Views\HR\ViewRemark.cshtml" />
+    <Content Include="Views\HR\SaveEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
