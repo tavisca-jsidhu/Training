@@ -1,11 +1,8 @@
 ﻿String.prototype.Concat = function () {
-    var stringOne = this;
-    for (var i = 0; i < arguments.length; i++) {
-        if (arguments[i] == "null")
-            stringOne += "null";
-        if (arguments[i] == "undefined")
-            stringOne += "undefined";
-        stringOne += arguments[i];
-    }
-    return stringOne;
+    var args = arguments,
+        self = args.length ? this : [];
+    if (!args.length) args = this;
+    for (index = 0, source = self; index < args.length; index++)
+        source += args[index];
+    return source;
 };
